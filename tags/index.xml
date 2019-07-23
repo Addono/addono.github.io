@@ -6,9 +6,46 @@
     <description>Recent content in Tags on Adriaan Knapen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
+    <lastBuildDate>Tue, 23 Jul 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://aknapen.nl/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ansible</title>
+      <link>https://aknapen.nl/tags/ansible/</link>
+      <pubDate>Tue, 23 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/tags/ansible/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>automation</title>
+      <link>https://aknapen.nl/tags/automation/</link>
+      <pubDate>Tue, 23 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/tags/automation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>continuous-integration</title>
+      <link>https://aknapen.nl/tags/continuous-integration/</link>
+      <pubDate>Tue, 23 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/tags/continuous-integration/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gitlab</title>
+      <link>https://aknapen.nl/tags/gitlab/</link>
+      <pubDate>Tue, 23 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/tags/gitlab/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>

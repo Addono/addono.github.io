@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Adriaan Knapen" />
+    <meta name="description" content="An abstraction wizzard">
+    <link rel="shortcut icon" href="https://aknapen.nl/img/logo.png">
+    <title>Continuous Deploy your own Matrix instance</title>
+    <meta name="generator" content="Hugo 0.55.6" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://aknapen.nl/css/main.css" /><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/tomorrow.min.css">
+    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,200bold,400old" />
+    
+    <!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+    
+  </head>
+
+  <body>
+    <div id="wrap">
+
+      
+      <nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="https://aknapen.nl/"><i class="fa fa-home"></i></a>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse" id="navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+        <li><a href="/blog/">BLOG</a></li>
+        
+        <li><a href="https://addono.gitlab.io/CV/cv.pdf">RESUME</a></li>
+        
+      
+      </ul>
+    </div>
+  </div>
+</nav>
+
+      
+      <div class="container">
+        <div class="blog-post">
+          <h3>
+            <strong><a href="https://aknapen.nl/blog/matrix-ansible-continuous-deployment/">Continuous Deploy your own Matrix instance</a></strong>
+          </h3>
+        </div>
+        <div class="blog-title">
+          <h4>
+          July 23, 2019
+            &nbsp;&nbsp;
+            
+            <span class="label label-success">gitlab</span>
+            
+            <span class="label label-success">ansible</span>
+            
+            <span class="label label-success">continuous-integration</span>
+            
+            <span class="label label-success">automation</span>
+            
+          </h4>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="blogpost">
+              
+
+<h2 id="bye-whatsapp">Bye Whatsapp</h2>
+
+<p>A while ago I decided to move away from Whatsapp and Telegram in favor of <a href="https://matrix.org/">Matrix</a>, mostly to imporve my privacy and get more control over my own data - yes Whatsapp, I&rsquo;m looking at your limited backup options. But enough about the idealistic tech vision and more about tech itself.</p>
+
+<p>To get the most out of Matrix it is best to deploy an instance for yourself. It&rsquo;s quite an involved process, however luckily <a href="https://github.com/spantaleev/matrix-docker-ansible-deploy">there&rsquo;s an Ansible playbook</a> which does most of the heavy lifting for you. However, it is still frequently updated, hence I was executing the playbook quite often.</p>
+
+<h2 id="cron-to-the-rescue">Cron to the Rescue</h2>
+
+<p>My first step of automating this process was by wrapping the playbook update commands in a short shell script, which then was executed every night by a cron job. It worked, but was far from ideal, for starters:
+* <strong>Ease of use</strong>: The Ansible playbook was executed from a VM - to make matters worse, the same machine as where Matrix was deployed on. Hence, in order to manually invoke the playbook or access the logs one had to SSH into the machine. So, fixing anything without a computer at hand was quite painfull.
+* <strong>Reliability</strong>: If the entire VM would, for whatever reason, disappear from the face of the earth, then nothing could be retrieved or recovered. As everything, including data, config and logs, where merely present on this single instance.</p>
+
+<h2 id="pipelines-for-the-rescue">Pipelines for the rescue</h2>
+
+<p>In order to tackle the problem I decided to check the configuration into version control and use a CI/CD pipeline to automatically deploy. For everyone who rather plays with the code than to continuou reading, you can find it <a href="https://gitlab.com/Addono/matrix-ansible-cd">here</a> and it should be rather easy to set it up yourself.</p>
+
+<p>In short, it uses a Gitlab CI pipeline which uses the latest version of the playbook to deploy the application. You can either use it for merely initiated manually update, or use the scheduled pipelines functionality to get similar behaviour to cron jobs. The best thing is, Gitlab offers quite a bit of execution time for free for your pipelines, so there&rsquo;s no need to pay anything.</p>
+
+              <hr>
+              <div class="related-posts">
+                <h5>Related Posts</h5>
+                
+              </div>
+            </div>
+          </div>
+          <hr>
+        <div class="disqus">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+
+    (function() {
+      
+      
+      if (window.location.hostname == "localhost")
+        return;
+
+      var disqus_shortname = '';
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+        </div>
+      </div>
+      
+    </div>
+
+    
+    <footer>
+  <div id="footer">
+    <div class="container">
+      <p class="text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io/">Hugo</a> and
+      <a href="http://www.github.com/nurlansu/hugo-sustain/">sustain</a> with ♥</p>
+    </div>
+  </div>
+</footer>
+<div class="footer"></div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://aknapen.nl/js/docs.min.js"></script>
+<script src="https://aknapen.nl/js/main.js"></script>
+
+<script src="https://aknapen.nl/js/ie10-viewport-bug-workaround.js"></script><!-- Syntax highlighting -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+  </body>
+</html>
