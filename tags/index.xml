@@ -12,7 +12,7 @@
     
     
     <item>
-      <title>ansible</title>
+      <title>Ansible</title>
       <link>https://aknapen.nl/tags/ansible/</link>
       <pubDate>Tue, 23 Jul 2019 00:00:00 +0000</pubDate>
       
@@ -21,7 +21,7 @@
     </item>
     
     <item>
-      <title>automation</title>
+      <title>Automation</title>
       <link>https://aknapen.nl/tags/automation/</link>
       <pubDate>Tue, 23 Jul 2019 00:00:00 +0000</pubDate>
       
@@ -30,7 +30,7 @@
     </item>
     
     <item>
-      <title>continuous-integration</title>
+      <title>Continuous Integration</title>
       <link>https://aknapen.nl/tags/continuous-integration/</link>
       <pubDate>Tue, 23 Jul 2019 00:00:00 +0000</pubDate>
       
@@ -39,11 +39,29 @@
     </item>
     
     <item>
-      <title>gitlab</title>
+      <title>Gitlab</title>
       <link>https://aknapen.nl/tags/gitlab/</link>
       <pubDate>Tue, 23 Jul 2019 00:00:00 +0000</pubDate>
       
       <guid>https://aknapen.nl/tags/gitlab/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Open Source</title>
+      <link>https://aknapen.nl/tags/open-source/</link>
+      <pubDate>Tue, 23 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/tags/open-source/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Privacy</title>
+      <link>https://aknapen.nl/tags/privacy/</link>
+      <pubDate>Tue, 23 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/tags/privacy/</guid>
       <description></description>
     </item>
     

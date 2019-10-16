@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Continuous Integration on Adriaan Knapen</title>
-    <link>https://aknapen.nl/tags/continuous-integration/</link>
-    <description>Recent content in Continuous Integration on Adriaan Knapen</description>
+    <title>Deployment on Adriaan Knapen</title>
+    <link>https://aknapen.nl/categories/deployment/</link>
+    <description>Recent content in Deployment on Adriaan Knapen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Tue, 23 Jul 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://aknapen.nl/tags/continuous-integration/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://aknapen.nl/categories/deployment/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
