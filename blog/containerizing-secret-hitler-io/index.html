@@ -7,7 +7,7 @@
     <meta name="author" content="Adriaan Knapen" />
     <meta name="description" content="An abstraction wizzard">
     <link rel="shortcut icon" href="https://aknapen.nl/img/logo.png">
-    <title>Continuous Deploy your own Matrix instance</title>
+    <title>Containerizing Secret Hitler.io</title>
     <meta name="generator" content="Hugo 0.69.2" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://aknapen.nl/css/main.css" /><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/tomorrow.min.css">
@@ -55,23 +55,21 @@
       <div class="container">
         <div class="blog-post">
           <h3>
-            <strong><a href="https://aknapen.nl/blog/matrix-ansible-continuous-deployment/">Continuous Deploy your own Matrix instance</a></strong>
+            <strong><a href="https://aknapen.nl/blog/containerizing-secret-hitler-io/">Containerizing Secret Hitler.io</a></strong>
           </h3>
         </div>
         <div class="blog-title">
           <h4>
-          July 23, 2019
+          April 28, 2020
             &nbsp;&nbsp;
             
-            <span class="label label-success">Gitlab</span>
+            <span class="label label-success">Containers</span>
             
-            <span class="label label-success">Ansible</span>
+            <span class="label label-success">Docker</span>
             
-            <span class="label label-success">Continuous Integration</span>
+            <span class="label label-success">docker-compose</span>
             
             <span class="label label-success">Automation</span>
-            
-            <span class="label label-success">Privacy</span>
             
             <span class="label label-success">Open Source</span>
             
@@ -80,19 +78,28 @@
         <div class="panel panel-default">
           <div class="panel-body">
             <div class="blogpost">
-              <h2 id="bye-whatsapp">Bye Whatsapp</h2>
-<p>A while ago I decided to move away from Whatsapp and Telegram in favor of <a href="https://matrix.org/">Matrix</a>, mostly to imporve my privacy and get more control over my own data - yes Whatsapp, I&rsquo;m looking at your limited backup options. But enough about the idealistic tech vision and more about tech itself.</p>
-<p>To get the most out of Matrix it is best to deploy an instance for yourself. It&rsquo;s quite an involved process, however luckily <a href="https://github.com/spantaleev/matrix-docker-ansible-deploy">there&rsquo;s an Ansible playbook</a> which does most of the heavy lifting for you. However, it is still frequently updated, hence I was executing the playbook quite often.</p>
-<h2 id="iteration-1-cron-to-the-rescue">Iteration #1: Cron to the Rescue</h2>
-<p>My first step of automating this process was by wrapping the playbook update commands in a short shell script, which then was executed every night by a cron job. It worked, but was far from ideal, for starters:</p>
+              <h2 id="game-night">Game Night</h2>
+<p>Some weeks ago I found myself wanting to play the social deduction game <a href="https://www.secrethitler.com">Secret Hitler</a>. There’s an excellent online version <a href="https://secrethitler.io">Secret Hitler.io</a>, which during the ongoing Corona related lock-down is a great find. There was one issue: Sign-ups were disabled that night because of excessive demand. So instead of a game night we went on to see if we could deploy our own version, as the website is open source anyway.</p>
+<p>I have never ran into an open source project which has as it’s “How to run in production” the simple message “Don’t”. But what’s a better motivator to do something than someone telling you not too? In their defense: I understand that they merely open-sourced it to make sure that the license of the assets of the original game (CC Attribution-NonCommercial-ShareAlike 4.0) are not violated, without them having any intention of supporting other deployments than their own. But being able to have a small instance just to play with friends is a requested feature not only by me, so we walked past the warning signs and started our adventures.</p>
+<h2 id="black-or-white-box">Black or White Box?</h2>
+<p>So by now it was already quite clear that the original project was not going to supply any help deploying the application. There’s some very basic guidance on configuring a local development instance, but that was about it. At this point, we were not interested in modifying their code base in any way, so the plan was to black-box their Node application, put it in a container and ship it off. Soon enough we realized that this was not going to cut it, first of all because it was completely unclear what the entrypoint of the application was 🧐. Secondly, all Postgres and Redis hostnames were hardcoded to <code>localhost</code> all over the code base 😭.</p>
+<h2 id="containers-here-we-come">Containers Here We Come!</h2>
+<p>Without further ado:</p>
 <ul>
-<li><strong>Ease of use</strong>: The Ansible playbook was executed from a VM - to make matters worse, the same machine as where Matrix was deployed on. Hence, in order to manually invoke the playbook or access the logs one had to SSH into the machine. So, fixing anything without a computer at hand was quite painfull.</li>
-<li><strong>Reliability</strong>: If the entire VM would for whatever reason disappear from the face of the earth, then nothing could be retrieved or recovered. As everything, including data, config and logs, where merely present on this single instance.</li>
+<li><a href="https://hub.docker.com/r/addono/secret-hitler">Docker Hub hosted image <code>addono/secret-hitler</code></a></li>
+<li><a href="https://raw.githubusercontent.com/Addono/secret-hitler/master/docker-compose.yaml"><code>docker-compose.yaml</code></a></li>
+<li><a href="https://raw.githubusercontent.com/Addono/secret-hitler/master/Dockerfile"><code>Dockerfile</code> </a></li>
+<li><a href="https://github.com/Addono/secret-hitler">Github Repository <code>addono/secret-hitler</code></a></li>
 </ul>
-<h2 id="iteration-2-cicd-pipelines">Iteration #2: CI/CD Pipelines</h2>
-<p>The second solution for automating the updating process was to start using pipelines, the ones you normally use for CI/CD. Why CI/CD pipelines? Because calling Ansible from code is nearly trivial, hence they easily integrate with these pipelines. Now, we will get an email when the update failes and have our logs stored savely on a different machine.</p>
-<p><em>For everyone who rather plays with the code than to continuou reading, you can find it <a href="https://gitlab.com/Addono/matrix-ansible-cd">here</a> and it should be rather easy to set it up yourself.</em></p>
-<p>In short, I decided to use Gitlab CI pipelines, which gets and runs the latest version of the playbook to deploy the application. You can either use it for manually initiated update, or use the scheduled pipelines functionality to get the same behaviour as we had with the cron job solution. The best thing is, Gitlab offers quite a bit of execution time for free for your pipelines, so there&rsquo;s no need to pay anything.</p>
+<p>The simplest way to get started is to run:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Download the docker-compose.yaml</span>
+wget https://raw.githubusercontent.com/Addono/secret-hitler/master/docker-compose.yaml
+
+<span style="color:#75715e"># Start secret-hitler with all required services</span>
+docker-compose up 
+</code></pre></div><p>When everything is booted up you can access the application at <a href="http://localhost:8080">http://localhost:8080</a>.</p>
+<p>If you did this on a VM running in the cloud or your own server, then opening up port 8080 should be enough to be able to play now with friends. At this point, you might want to setup a reverse proxy - e.g. NGINX - with Let’s Encrypt to enable HTTPS and expose the application on a different port. However, assuming you’re only using it to play a game or two with friends this shouldn’t be too much on an issue.</p>
+<p><em>Sidenote: I haven’t looked into configuring email, by default it will not have specify any, which causes the register form to fail when an email adres is entered. So, instruct everyone who’se joining that they shouldn’t. PRs fixing this - or any other issues for that matter - are welcome!</em></p>
 
               <hr>
               <div class="related-posts">
@@ -101,12 +108,12 @@
                   <div class="row">
                     <div class="col-sm-4 col-md-4 col-lg-4">
                       <h6 style="text-align: right">
-                        April 28, 2020
+                        July 23, 2019
                       </h6>
                     </div>
                     <div class="col-sm-8 col-md-8 col-lg-8">
                       <h6 style="text-align: left">
-                        <strong><a href="/blog/containerizing-secret-hitler-io/">Containerizing Secret Hitler.io</a></strong>
+                        <strong><a href="/blog/matrix-ansible-continuous-deployment/">Continuous Deploy your own Matrix instance</a></strong>
                       </h6>
                     </div>
                   </div>

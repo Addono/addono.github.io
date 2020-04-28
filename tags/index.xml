@@ -6,10 +6,55 @@
     <description>Recent content in Tags on Adriaan Knapen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Tue, 23 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 28 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://aknapen.nl/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Automation</title>
+      <link>https://aknapen.nl/tags/automation/</link>
+      <pubDate>Tue, 28 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/tags/automation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Containers</title>
+      <link>https://aknapen.nl/tags/containers/</link>
+      <pubDate>Tue, 28 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/tags/containers/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>https://aknapen.nl/tags/docker/</link>
+      <pubDate>Tue, 28 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker-compose</title>
+      <link>https://aknapen.nl/tags/docker-compose/</link>
+      <pubDate>Tue, 28 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/tags/docker-compose/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Open Source</title>
+      <link>https://aknapen.nl/tags/open-source/</link>
+      <pubDate>Tue, 28 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/tags/open-source/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Ansible</title>
@@ -17,15 +62,6 @@
       <pubDate>Tue, 23 Jul 2019 00:00:00 +0000</pubDate>
       
       <guid>https://aknapen.nl/tags/ansible/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Automation</title>
-      <link>https://aknapen.nl/tags/automation/</link>
-      <pubDate>Tue, 23 Jul 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://aknapen.nl/tags/automation/</guid>
       <description></description>
     </item>
     
@@ -44,15 +80,6 @@
       <pubDate>Tue, 23 Jul 2019 00:00:00 +0000</pubDate>
       
       <guid>https://aknapen.nl/tags/gitlab/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Open Source</title>
-      <link>https://aknapen.nl/tags/open-source/</link>
-      <pubDate>Tue, 23 Jul 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://aknapen.nl/tags/open-source/</guid>
       <description></description>
     </item>
     

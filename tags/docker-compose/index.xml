@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>docker-compose on Adriaan Knapen</title>
+    <link>https://aknapen.nl/tags/docker-compose/</link>
+    <description>Recent content in docker-compose on Adriaan Knapen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Tue, 28 Apr 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://aknapen.nl/tags/docker-compose/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Containerizing Secret Hitler.io</title>
+      <link>https://aknapen.nl/blog/containerizing-secret-hitler-io/</link>
+      <pubDate>Tue, 28 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/blog/containerizing-secret-hitler-io/</guid>
+      <description>Game Night Some weeks ago I found myself wanting to play the social deduction game Secret Hitler. There’s an excellent online version Secret Hitler.io, which during the ongoing Corona related lock-down is a great find. There was one issue: Sign-ups were disabled that night because of excessive demand. So instead of a game night we went on to see if we could deploy our own version, as the website is open source anyway.</description>
+    </item>
+    
+  </channel>
+</rss>
