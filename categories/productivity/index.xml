@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Productivity on Adriaan Knapen</title>
+    <link>https://aknapen.nl/categories/productivity/</link>
+    <description>Recent content in Productivity on Adriaan Knapen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 29 Apr 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://aknapen.nl/categories/productivity/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Prod&#43;&#43;: A Mini-Series on How to be More Productive</title>
+      <link>https://aknapen.nl/blog/prod-plus-plus-a-mini-series-on-how-to-be-more-productive/</link>
+      <pubDate>Wed, 29 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/blog/prod-plus-plus-a-mini-series-on-how-to-be-more-productive/</guid>
+      <description>In this mini-series I will walk you through some of the habits I replaced in recent times, which have shown to pay off and make me a more productive programmer/power-user of my computer. All these changes should be easy to gradually adopt so I would highly recommend to check them out. If you’ve any suggestions ☝️ or improvements ✍️, then email me at hi@aknapen.nl or reach out using any of the social media listed here.</description>
+    </item>
+    
+  </channel>
+</rss>
