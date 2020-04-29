@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Technology on Adriaan Knapen</title>
+    <link>https://aknapen.nl/categories/technology/</link>
+    <description>Recent content in Technology on Adriaan Knapen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 29 Apr 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://aknapen.nl/categories/technology/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Prod&#43;&#43;: A Mini-Series on How to be More Productive</title>
+      <link>https://aknapen.nl/blog/prod-plus-plus-a-mini-series-on-how-to-be-more-productive/</link>
+      <pubDate>Wed, 29 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/blog/prod-plus-plus-a-mini-series-on-how-to-be-more-productive/</guid>
+      <description>In this mini-series I will walk you through some of the habits I replaced in recent times, which have shown to pay off and make me a more productive programmer/power-user of my computer. All these changes should be easy to gradually adopt so I would highly recommend to check them out. If you’ve any suggestions ☝️ or improvements ✍️, then email me at hi@aknapen.nl or reach out using any of the social media listed here.</description>
+    </item>
+    
+    <item>
+      <title>Containerizing Secret Hitler.io</title>
+      <link>https://aknapen.nl/blog/containerizing-secret-hitler-io/</link>
+      <pubDate>Tue, 28 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/blog/containerizing-secret-hitler-io/</guid>
+      <description>Game Night Some weeks ago I found myself wanting to play the social deduction game Secret Hitler. There’s an excellent online version Secret Hitler.io, which during the ongoing Corona related lock-down is a great find. There was one issue: Sign-ups were disabled that night because of excessive demand. So instead of a game night we went on to see if we could deploy our own version, as the website is open source anyway.</description>
+    </item>
+    
+    <item>
+      <title>Continuous Deploy your own Matrix instance</title>
+      <link>https://aknapen.nl/blog/matrix-ansible-continuous-deployment/</link>
+      <pubDate>Tue, 23 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/blog/matrix-ansible-continuous-deployment/</guid>
+      <description>Bye Whatsapp A while ago I decided to move away from Whatsapp and Telegram in favor of Matrix, mostly to imporve my privacy and get more control over my own data - yes Whatsapp, I&amp;rsquo;m looking at your limited backup options. But enough about the idealistic tech vision and more about tech itself.
+To get the most out of Matrix it is best to deploy an instance for yourself. It&amp;rsquo;s quite an involved process, however luckily there&amp;rsquo;s an Ansible playbook which does most of the heavy lifting for you.</description>
+    </item>
+    
+  </channel>
+</rss>
