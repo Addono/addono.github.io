@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Adriaan Knapen" />
+    <meta name="description" content="An abstraction wizzard">
+    <link rel="shortcut icon" href="https://aknapen.nl/img/logo.png">
+    <title>Prod&#43;&#43;[1]: Master Git</title>
+    <meta name="generator" content="Hugo 0.69.2" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://aknapen.nl/css/main.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,200bold,400old" />
+    
+    <!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+    
+  </head>
+
+  <body>
+    <div id="wrap">
+
+      
+      <nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="https://aknapen.nl/"><i class="fa fa-home"></i></a>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse" id="navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+        <li><a href="/blog/">BLOG</a></li>
+        
+        <li><a href="https://cv.aknapen.nl">RESUME</a></li>
+        
+      
+      </ul>
+    </div>
+  </div>
+</nav>
+
+      
+      <div class="container">
+        <div class="blog-post">
+          <h3>
+            <strong><a href="https://aknapen.nl/blog/prod-plus-plus-1-master-git/">Prod&#43;&#43;[1]: Master Git</a></strong>
+          </h3>
+        </div>
+        <div class="blog-title">
+          <h4>
+          April 30, 2020
+            &nbsp;&nbsp;
+            
+            <a href="https://aknapen.nl/tags/productivity">
+              <span class="label label-success">Productivity</span>
+            </a>
+            
+            <a href="https://aknapen.nl/tags/git">
+              <span class="label label-success">Git</span>
+            </a>
+            
+            <a href="https://aknapen.nl/tags/unix">
+              <span class="label label-success">Unix</span>
+            </a>
+            
+            <a href="https://aknapen.nl/tags/windows">
+              <span class="label label-success">Windows</span>
+            </a>
+            
+          </h4>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="blogpost">
+              <p>In this mini-series I will walk you through some habits I replaced in recent times, which have shown to pay off and make me a more productive programmer/power-user of my computer. All these changes should be easy to gradually adopt, so I would highly recommend checking them out. If you’ve any suggestions ☝️ or improvements ✍️, then email me at <a href="mailto:hi@aknapen.nl">hi@aknapen.nl</a> or reach out using any of the social media listed <a href="https://aknapen.nl">here</a>.</p>
+<hr>
+<h1 id="prod1-master-git">Prod++[1]: Master Git</h1>
+<p>Yes, this assumes you’re using Git, which might be everyone’s version control system (VCS) of choice. However, this does not change any of the underlying reasons why you should spend time on becoming effective at using your VCS. So whenever I say Git, please replace it with whichever VCS you are using.</p>
+<h2 id="the-why">The Why</h2>
+<p>Many developers I get to work with are not too comfortable around Git. This is definitely more noticeable with more junior and less “hardskills” focused engineers. The latter referencing to for example UI or UX designers. This makes them more reluctant to using Git for their own personal projects and makes them less effective when needing to combine work.</p>
+<p>Using Git for your own projects might seem like an unnecessary overhead to many. However once you get more proficient at it both reduces the time spend on setting everything up and at the same time better at leveraging its strengths. Some reasons on how you can benefit from using Git in your own projects:</p>
+<ul>
+<li><strong>Time-machine</strong> If you commit frequently you can easily go back to previous versions as to find older implementations, trace bugs to their root and show how your project evolved over time.</li>
+<li><strong>Self-review</strong> Using Git for your personal projects is a great enabler to become more aware of the changes you are making. Remember those <code>console.logs</code> you added all over your code while trying to get this new feature to work? Well, <code>git diff</code> does.</li>
+<li><strong>Backup</strong> Ever had a friend who lost a few weeks of work when their laptop suddenly gave up? If you regularly push your changes to an external Git repository, then you won’t suffer the same loss.</li>
+<li><strong>Ease isolated development environment setup</strong> Having the source-code checked into Git allows you to easily setup a new development environment if one is broken or delete everything which is not checked in to clean up.</li>
+<li><strong>Automation</strong> There are many tools out there to aid your development by hooking into Git. Whether it’s <a href="https://prettier.io/">Prettier</a> automatically formatting your code locally or <a href="https://github.com/features/actions">Github Actions</a> to automatically deploy your website.</li>
+<li><strong>Sharing Code</strong> Having your code base stored in Git makes it easier to share your code, if you ever manage to get someone interested in giving it a look.</li>
+</ul>
+<h2 id="the-how">The How</h2>
+<h3 id="use-aliases">Use Aliases</h3>
+<p>There are some great collections of Git aliases available to significantly shorten your commands and easy using back practices (e.g. making <code>git push --force-with-lease</code> the default rather than <code>git push --force</code>). I personally use the <a href="https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/git"><code>git</code></a> plugin from <a href="https://ohmyz.sh/">Oh My ZSH</a>, although <a href="https://github.com/gitalias/gitalias"><code>gitalias/gitalias</code></a> also offers a great collection. Don’t be afraid to look them regularly look them up, either online or using the <code>which</code> command to expand the alias. Also, adding your own aliases is always an option if you still find that you’re repeating yourself.</p>
+<p>As to give an example:
+<img src="/img/blog/git-aliases.png" alt="Example on how short Git aliases speed up work"></p>
+<h3 id="fix-your-own-mess">Fix Your Own Mess</h3>
+<p>When starting with Git it can be tempting to just delete the entire repository when there didn&rsquo;t seem to be an easy way out, for example when merge-conflicts arose or your have commits you want to get rid of. Short term this might very well be the quickest solution, however these issues often stem from a lack of understanding how Git works. Spending a bit of time researching to understand how you got into this situation is a great way of getting to know Git and the principles behind it. Without properly grasping the fundamentals of Git, it is impossible to ever reach a more advanced level.</p>
+<h3 id="inspect-the-log">Inspect the Log</h3>
+<p>Git can visualise history in a great way. This allows you to easily see what changed between versions, what commits are shared between your feature and master branch and which commits are not yet pushed to the remote. I will leave you with the following screenshot, there&rsquo;s already a lot going on and it might take some time to get comfortable reading it. But it&rsquo;s a great tool to have in your toolbox, as it allows you to quickly figure out what the current state of your repository is.</p>
+<p><img src="/img/blog/git-graph-log.png" alt="Screenshot of a Git commit log graph"></p>
+<p>There are many ways on how to render the graph, for this I would refer back to the aliases mentioned earlier. Although you can quickly get started with a basic command such as <code>git log --graph --all</code>.</p>
+<h3 id="read-the-changelog">Read the Changelog</h3>
+<p>Okay, this might sound very boring at start. Luckily Github has really nice way of covering Git&rsquo;s changelog. As of writing, version <a href="https://github.blog/2020-03-22-highlights-from-git-2-26/">2.26</a> is the latest release. When I first ran into these posts, I found it easiest to read the log of the current version and navigate to the previous one by following the link at the top. What I especially like about Github&rsquo;s changelog is that there&rsquo;s a strong focus on how it benefits you, rather than merely covering what changed as the <a href="https://github.com/git/git/tree/master/Documentation/RelNotes">official</a> Git changelog does.</p>
+<p>Even small changes of for example new flags or under the hood performance improvements show you what is actively worked on, which parts are getting deprecated and how Git is being used. Slowly your Git knowledge will get stale, so keeping up with the changes allows you to stay ahead of the curve.</p>
+
+              <hr>
+              <div class="related-posts">
+                <h5>Related Posts</h5>
+                
+                  <div class="row">
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                      <h6 style="text-align: right">
+                        April 29, 2020
+                      </h6>
+                    </div>
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+                      <h6 style="text-align: left">
+                        <strong><a href="/blog/prod-plus-plus-a-mini-series-on-how-to-be-more-productive/">Prod++: A Mini-Series on How to be More Productive</a></strong>
+                      </h6>
+                    </div>
+                  </div>
+                
+              </div>
+            </div>
+          </div>
+          <hr>
+        </div>
+      </div>
+      
+    </div>
+
+    
+    <footer>
+  <div id="footer">
+    <div class="container">
+      <p class="text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io/">Hugo</a> and
+      <a href="http://www.github.com/nurlansu/hugo-sustain/">sustain</a> with ♥</p>
+    </div>
+  </div>
+</footer>
+<div class="footer"></div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://aknapen.nl/js/docs.min.js"></script>
+<script src="https://aknapen.nl/js/main.js"></script>
+
+<script src="https://aknapen.nl/js/ie10-viewport-bug-workaround.js"></script>
+
+
+    
+  </body>
+</html>

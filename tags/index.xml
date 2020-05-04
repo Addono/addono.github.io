@@ -6,15 +6,24 @@
     <description>Recent content in Tags on Adriaan Knapen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Wed, 29 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 30 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://aknapen.nl/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Git</title>
+      <link>https://aknapen.nl/tags/git/</link>
+      <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Productivity</title>
       <link>https://aknapen.nl/tags/productivity/</link>
-      <pubDate>Wed, 29 Apr 2020 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>https://aknapen.nl/tags/productivity/</guid>
       <description></description>
@@ -23,7 +32,7 @@
     <item>
       <title>Unix</title>
       <link>https://aknapen.nl/tags/unix/</link>
-      <pubDate>Wed, 29 Apr 2020 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>https://aknapen.nl/tags/unix/</guid>
       <description></description>
@@ -32,7 +41,7 @@
     <item>
       <title>Windows</title>
       <link>https://aknapen.nl/tags/windows/</link>
-      <pubDate>Wed, 29 Apr 2020 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>https://aknapen.nl/tags/windows/</guid>
       <description></description>
