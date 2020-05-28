@@ -6,15 +6,33 @@
     <description>Recent content in Categories on Adriaan Knapen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Thu, 30 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 28 May 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://aknapen.nl/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Development</title>
+      <link>https://aknapen.nl/categories/development/</link>
+      <pubDate>Thu, 28 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/categories/development/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kubernetes</title>
+      <link>https://aknapen.nl/categories/kubernetes/</link>
+      <pubDate>Thu, 28 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/categories/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Productivity</title>
       <link>https://aknapen.nl/categories/productivity/</link>
-      <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 28 May 2020 00:00:00 +0000</pubDate>
       
       <guid>https://aknapen.nl/categories/productivity/</guid>
       <description></description>
@@ -23,7 +41,7 @@
     <item>
       <title>Technology</title>
       <link>https://aknapen.nl/categories/technology/</link>
-      <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 28 May 2020 00:00:00 +0000</pubDate>
       
       <guid>https://aknapen.nl/categories/technology/</guid>
       <description></description>
@@ -35,15 +53,6 @@
       <pubDate>Tue, 28 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>https://aknapen.nl/categories/deployment/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Development</title>
-      <link>https://aknapen.nl/categories/development/</link>
-      <pubDate>Tue, 28 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://aknapen.nl/categories/development/</guid>
       <description></description>
     </item>
     

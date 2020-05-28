@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Adriaan Knapen" />
+    <meta name="description" content="An abstraction wizzard">
+    <link rel="shortcut icon" href="https://aknapen.nl/img/logo.png">
+    <title>Prod&#43;&#43;[2]: Managing Kubernetes Context Files</title>
+    <meta name="generator" content="Hugo 0.71.1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://aknapen.nl/css/main.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,200bold,400old" />
+    
+    <!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+    
+  </head>
+
+  <body>
+    <div id="wrap">
+
+      
+      <nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="https://aknapen.nl/"><i class="fa fa-home"></i></a>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse" id="navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+        <li><a href="/blog/">BLOG</a></li>
+        
+        <li><a href="https://cv.aknapen.nl">RESUME</a></li>
+        
+      
+      </ul>
+    </div>
+  </div>
+</nav>
+
+      
+      <div class="container">
+        <div class="blog-post">
+          <h3>
+            <strong><a href="https://aknapen.nl/blog/prod-plus-plus-2-shell-improvement-managing-kubernetes-context-files/">Prod&#43;&#43;[2]: Managing Kubernetes Context Files</a></strong>
+          </h3>
+        </div>
+        <div class="blog-title">
+          <h4>
+          May 28, 2020
+            &nbsp;&nbsp;
+            
+            <a href="https://aknapen.nl/tags/productivity">
+              <span class="label label-success">Productivity</span>
+            </a>
+            
+            <a href="https://aknapen.nl/tags/kubernetes">
+              <span class="label label-success">Kubernetes</span>
+            </a>
+            
+            <a href="https://aknapen.nl/tags/shell">
+              <span class="label label-success">Shell</span>
+            </a>
+            
+            <a href="https://aknapen.nl/tags/bash">
+              <span class="label label-success">Bash</span>
+            </a>
+            
+            <a href="https://aknapen.nl/tags/linux">
+              <span class="label label-success">Linux</span>
+            </a>
+            
+            <a href="https://aknapen.nl/tags/macos">
+              <span class="label label-success">MacOS</span>
+            </a>
+            
+          </h4>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="blogpost">
+              <p>In this mini-series I will walk you through some habits I replaced in recent times, which have shown to pay off and make me a more productive programmer/power-user of my computer. All these changes should be easy to gradually adopt, so I would highly recommend checking them out. If you’ve any suggestions ☝️ or improvements ✍️, then email me at <a href="mailto:hi@aknapen.nl">hi@aknapen.nl</a> or reach out using any of the social media listed <a href="https://aknapen.nl">here</a>.</p>
+<hr>
+<h1 id="prod2-managing-kubernetes-context-files">Prod++[2]: Managing Kubernetes Context Files</h1>
+<p>For anyone who ever worked a bit with Kubernetes, <code>kubectx</code> is probably quite familiar. Nothing painfull there when you&rsquo;re just running a local <a href="https://minikube.sigs.k8s.io/">Minikube</a> cluster, which auto-magically seems to add and update it&rsquo;s configuration. In practice it&rsquo;s updating the <code>~/.kube/config</code> file every time you create or remove a cluster.</p>
+<p>This kind of magic is all fine when you&rsquo;re getting started, but soon enough you will find that Minikube is merely one of the sources of Kubernetes contexts. You might also be running <a href="https://kind.sigs.k8s.io/">kind</a>, spin up some clusters in the cloud, or have your collegue share some with you. Soon the amount of different context credentials starts ramping up. <code>kubectl</code> doesn&rsquo;t come with an elegant solution out of the box.</p>
+<p>You might end up trying <a href="https://stackoverflow.com/a/46184649/7500339">this</a> config flattening solution suggested at StackOverflow. Great, now whenever you want to remove a context from your configuration you have to manually siv through this configuration file and delete all references - spoiler alert: this requires editing the space in two or more places. Also, assuming you were successfull and didn&rsquo;t overwrite the previous config, you now duplicated your configuration file.</p>
+<p>So what are you going to do with this old configuration file? If you let it hang around, then you will slowly start collecting all these files, soon enough you will lose track which files are already merged and which are not. A mess is imminent if you do not delete them, but the flipside is that removing these files could be irrecoverable.</p>
+<h3 id="the-official-way">The Official Way</h3>
+<p>Luckily the official documentation has a <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/#set-the-kubeconfig-environment-variable">suggestion</a> on how to solve this issue: Append the new configuration file to the list of configuration files stored in the <code>KUBECONFIG</code>environment variable. Manually adding and removing paths to this environment variable remembered me of all the fun times with managing the <code>PATH</code> in Windows, which would never get even close to fit on my screen, let alone the small text field they reserved for it.</p>
+<p>Don&rsquo;t dispair, here&rsquo;s the real solution. Add it to your <code>~/.bashrc</code> or <code>~/.zshrc</code> and no need to ever touch <code>KUBECONFIG</code> manually again:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Set the location of the Kubernetes configs</span>
+export KUBECONFIG<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>find ~/.kube/config ~/.kube/configs -type f 2&gt;/dev/null | paste -s -d : -<span style="color:#66d9ef">)</span>
+</code></pre></div><p>Now, every time you start your shell it will join all paths to <code>~/.kube/config</code> or <code>~/.kube/configs</code> and set them as your <code>KUBECONFIG</code>. Both can be either files or directories. I kept <code>config</code> as the default file, which Minikube and kind can use for their auto-magic. <code>configs</code> is a directory which contains all the context files. Now, adding or removing a file is as easy as respectively copying and deleting a file in <code>~/.kube/configs</code> - don&rsquo;t forget to restart the shell to take effect - which made managing all my configs so much easier.</p>
+<p>To briefly touch upon how this piece of Bash works, <code>find</code> is used to list all file paths. Then <code>paste</code> merely joins all these file paths with a colon and violà, we got our <code>KUBECONFIG</code>.</p>
+
+              <hr>
+              <div class="related-posts">
+                <h5>Related Posts</h5>
+                
+                  <div class="row">
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                      <h6 style="text-align: right">
+                        April 30, 2020
+                      </h6>
+                    </div>
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+                      <h6 style="text-align: left">
+                        <strong><a href="/blog/prod-plus-plus-1-master-git/">Prod++[1]: Master Git</a></strong>
+                      </h6>
+                    </div>
+                  </div>
+                
+                  <div class="row">
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                      <h6 style="text-align: right">
+                        April 29, 2020
+                      </h6>
+                    </div>
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+                      <h6 style="text-align: left">
+                        <strong><a href="/blog/prod-plus-plus-a-mini-series-on-how-to-be-more-productive/">Prod++: A Mini-Series on How to be More Productive</a></strong>
+                      </h6>
+                    </div>
+                  </div>
+                
+              </div>
+            </div>
+          </div>
+          <hr>
+        </div>
+      </div>
+      
+    </div>
+
+    
+    <footer>
+  <div id="footer">
+    <div class="container">
+      <p class="text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io/">Hugo</a> and
+      <a href="http://www.github.com/nurlansu/hugo-sustain/">sustain</a> with ♥</p>
+    </div>
+  </div>
+</footer>
+<div class="footer"></div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://aknapen.nl/js/docs.min.js"></script>
+<script src="https://aknapen.nl/js/main.js"></script>
+
+<script src="https://aknapen.nl/js/ie10-viewport-bug-workaround.js"></script>
+
+
+    
+  </body>
+</html>

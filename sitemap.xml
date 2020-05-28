@@ -4,17 +4,77 @@
   
   <url>
     <loc>https://aknapen.nl/</loc>
-    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
+    <lastmod>2020-05-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://aknapen.nl/tags/bash/</loc>
+    <lastmod>2020-05-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://aknapen.nl/blog/</loc>
-    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
+    <lastmod>2020-05-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://aknapen.nl/categories/</loc>
-    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
+    <lastmod>2020-05-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://aknapen.nl/categories/development/</loc>
+    <lastmod>2020-05-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://aknapen.nl/tags/kubernetes/</loc>
+    <lastmod>2020-05-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://aknapen.nl/categories/kubernetes/</loc>
+    <lastmod>2020-05-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://aknapen.nl/tags/linux/</loc>
+    <lastmod>2020-05-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://aknapen.nl/tags/macos/</loc>
+    <lastmod>2020-05-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://aknapen.nl/blog/prod-plus-plus-2-shell-improvement-managing-kubernetes-context-files/</loc>
+    <lastmod>2020-05-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://aknapen.nl/tags/productivity/</loc>
+    <lastmod>2020-05-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://aknapen.nl/categories/productivity/</loc>
+    <lastmod>2020-05-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://aknapen.nl/tags/shell/</loc>
+    <lastmod>2020-05-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://aknapen.nl/tags/</loc>
+    <lastmod>2020-05-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://aknapen.nl/categories/technology/</loc>
+    <lastmod>2020-05-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -24,26 +84,6 @@
   
   <url>
     <loc>https://aknapen.nl/blog/prod-plus-plus-1-master-git/</loc>
-    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://aknapen.nl/tags/productivity/</loc>
-    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://aknapen.nl/categories/productivity/</loc>
-    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://aknapen.nl/tags/</loc>
-    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://aknapen.nl/categories/technology/</loc>
     <lastmod>2020-04-30T00:00:00+00:00</lastmod>
   </url>
   
@@ -79,11 +119,6 @@
   
   <url>
     <loc>https://aknapen.nl/categories/deployment/</loc>
-    <lastmod>2020-04-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://aknapen.nl/categories/development/</loc>
     <lastmod>2020-04-28T00:00:00+00:00</lastmod>
   </url>
   
