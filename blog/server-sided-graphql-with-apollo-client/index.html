@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Adriaan Knapen" />
+    <meta name="description" content="An abstraction wizzard">
+    <link rel="shortcut icon" href="https://aknapen.nl/img/logo.png">
+    <title>Server Sided GraphQL with Apollo Client</title>
+    <meta name="generator" content="Hugo 0.73.0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://aknapen.nl/css/main.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,200bold,400old" />
+    
+    <!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+    
+  </head>
+
+  <body>
+    <div id="wrap">
+
+      
+      <nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="https://aknapen.nl/"><i class="fa fa-home"></i></a>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse" id="navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+        <li><a href="/blog/">BLOG</a></li>
+        
+        <li><a href="https://cv.aknapen.nl">RESUME</a></li>
+        
+      
+      </ul>
+    </div>
+  </div>
+</nav>
+
+      
+      <div class="container">
+        <div class="blog-post">
+          <h3>
+            <strong><a href="https://aknapen.nl/blog/server-sided-graphql-with-apollo-client/">Server Sided GraphQL with Apollo Client</a></strong>
+          </h3>
+        </div>
+        <div class="blog-title">
+          <h4>
+          June 30, 2020
+            &nbsp;&nbsp;
+            
+            <a href="https://aknapen.nl/tags/graphql">
+              <span class="label label-success">GraphQL</span>
+            </a>
+            
+            <a href="https://aknapen.nl/tags/apollo-client">
+              <span class="label label-success">Apollo Client</span>
+            </a>
+            
+            <a href="https://aknapen.nl/tags/nodejs">
+              <span class="label label-success">NodeJS</span>
+            </a>
+            
+            <a href="https://aknapen.nl/tags/development">
+              <span class="label label-success">Development</span>
+            </a>
+            
+          </h4>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="blogpost">
+              <h1 id="server-sided-graphql-with-apollo-client">Server Sided GraphQL with Apollo Client</h1>
+<p>During development of the <a href="https://dashboard.claimr.tools">ClaimR Dashboard</a> I found myself in the position where I wanted to query a GraphQL endpoint from my backend. It&rsquo;s a NextJS powered project, hence the server sided logic is written in Node. So I started looking around for GraphQL clients but with little success.</p>
+<p><a href="https://github.com/prisma-labs/graphql-request">graphql-request</a> seemed like a match, with what looked like a recent release. However, on closer inspection it&rsquo;s pretty clear that it&rsquo;s abandoned, hence not a proper foundation to build a new product upon. I came close to resort to making plain HTTP requests myself, until I stumbled upon Apollo Client feature to make queries yourself.</p>
+<p>Apollo Client advocates in their documentation that it&rsquo;s mainly for React, strongly pushing everyone to use their hook based architecture. I have used it a lot and it has recently become my default choice when doing client side GraphQL consumption. However, the server I was building is a GraphQL endpoint itself, hence it involves no React at all.</p>
+<p>Behold we can actually use the Apollo Client on server side. I couldn&rsquo;t find a single mention of it in the documentation, and the client is actually branded as &ldquo;Client (React)&rdquo;. However, on the <a href="https://www.apollographql.com/docs/react/get-started/">Getting Started</a> page of the documentation they start with using <code>client.query(...)</code> before they introduce hook and component based requests.</p>
+<p>The options from <code>client.query(...)</code> and <code>client.mutate(...)</code> are very similar to the <code>useQuery</code> and <code>useMutation</code> we know from React. Both return a promise, which include the response, error and the like. Here&rsquo;s a little example to show how this approximately looks like.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ApolloClient</span>, <span style="color:#a6e22e">HttpLink</span>, <span style="color:#a6e22e">InMemoryCache</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@apollo/client&#39;</span>
+
+<span style="color:#75715e">// Create GraphQL Client for FaunaDB
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">client</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ApolloClient</span>({
+  <span style="color:#a6e22e">cache</span>: <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">InMemoryCache</span>(),
+  <span style="color:#a6e22e">link</span>: <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">HttpLink</span>({
+    <span style="color:#a6e22e">uri</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;https://graphql.fauna.com/graphql&#39;</span>,
+    <span style="color:#a6e22e">headers</span><span style="color:#f92672">:</span> {
+      <span style="color:#e6db74">&#34;Authorization&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`Bearer </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">FAUNADB_SECRET</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>,
+    },
+  }),
+  <span style="color:#a6e22e">defaultOptions</span><span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">query</span><span style="color:#f92672">:</span> {
+      <span style="color:#a6e22e">fetchPolicy</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;no-cache&#39;</span>,
+    },
+  }
+})
+
+<span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// Use the client to query our GraphQL endpoint
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">data</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">query</span>({
+  <span style="color:#a6e22e">query</span>: <span style="color:#66d9ef">gql</span><span style="color:#e6db74">`
+</span><span style="color:#e6db74">    query GET_USERS {
+</span><span style="color:#e6db74">      users {
+</span><span style="color:#e6db74">        email
+</span><span style="color:#e6db74">        name
+</span><span style="color:#e6db74">      }
+</span><span style="color:#e6db74">    }
+</span><span style="color:#e6db74">	`</span>,
+})
+</code></pre></div><p>Note that in the snippet the <code>defaultOptions</code> of the client is configured to disable the cache. This is completely optional, however the default caching policy is reasonable for usage on the frontend. It results in multiple issues:</p>
+<p>Having your backend cache everything by default will cause <strong>stale data to be returned</strong>. Here and there I overwrite the <code>fetchPolicy</code> for some queries to include caching if I am certain that the response won&rsquo;t change. However, when in doubt don&rsquo;t. Instead, try to go for client-side caching wherever possible.</p>
+<p>I burned my fingers by having (unintentionally) client side and server side caching - both were using Apollo Client. Figuring out where the stale data originated from was tedious, as you need to manually inspect the query responses. Also, it&rsquo;s very easy for another developer to not be aware of this server side caching behavior, which will surely drive them mad when they are debugging.</p>
+<p>Another issue which emerged is data <strong>inconsistency</strong>, as I deployed my backend as a serverless function. Each instance deployed by my serverless provider had its own cache, hence different instances would cache different data for the same query. To the user this caused the data to flicker, as requests were routed to an instance at random, causing responses from different instances to contain different results.</p>
+<p>Also expect <strong>increased memory usage</strong>, as all responses are stored in the cache by default. This could quickly become an issue if you deploy your backend onto many small instances, as this cache will start to take up quite a bit of memory fast.</p>
+<p>Lastly, it should be noted that this form of local caching will see <strong>degraded effectiveness</strong> when a lot of instances are used or instances are purged often - as would be the case in serverless environments. More instances mean having more individual caches, hence the chance of having a cache miss increases with more instances. In the end, the same data needs to be cached multiple times in order to implement effective caching.</p>
+<p>To conclude, be mindful about caching. It can help a bit, but the default Apollo Client caching implementation is in memory and hence not as effective as it is on the client side. Maybe in the future we will see a Redis client, as <a href="https://www.npmjs.com/package/apollo-server-cache-redis">exists</a> for Apollo Server, but until then we will need to make due with what we have.</p>
+
+              <hr>
+              <div class="related-posts">
+                <h5>Related Posts</h5>
+                
+                  <div class="row">
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                      <h6 style="text-align: right">
+                        April 28, 2020
+                      </h6>
+                    </div>
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+                      <h6 style="text-align: left">
+                        <strong><a href="/blog/containerizing-secret-hitler-io/">Containerizing Secret Hitler.io</a></strong>
+                      </h6>
+                    </div>
+                  </div>
+                
+              </div>
+            </div>
+          </div>
+          <hr>
+        </div>
+      </div>
+      
+    </div>
+
+    
+    <footer>
+  <div id="footer">
+    <div class="container">
+      <p class="text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io/">Hugo</a> and
+      <a href="http://www.github.com/nurlansu/hugo-sustain/">sustain</a> with ♥</p>
+    </div>
+  </div>
+</footer>
+<div class="footer"></div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://aknapen.nl/js/docs.min.js"></script>
+<script src="https://aknapen.nl/js/main.js"></script>
+
+<script src="https://aknapen.nl/js/ie10-viewport-bug-workaround.js"></script>
+
+
+  <script data-goatcounter="https://addono.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+
+
+    
+  </body>
+</html>

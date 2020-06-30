@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GraphQL on Adriaan Knapen</title>
+    <link>https://aknapen.nl/tags/graphql/</link>
+    <description>Recent content in GraphQL on Adriaan Knapen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Tue, 30 Jun 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://aknapen.nl/tags/graphql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Server Sided GraphQL with Apollo Client</title>
+      <link>https://aknapen.nl/blog/server-sided-graphql-with-apollo-client/</link>
+      <pubDate>Tue, 30 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/blog/server-sided-graphql-with-apollo-client/</guid>
+      <description>Server Sided GraphQL with Apollo Client During development of the ClaimR Dashboard I found myself in the position where I wanted to query a GraphQL endpoint from my backend. It&amp;rsquo;s a NextJS powered project, hence the server sided logic is written in Node. So I started looking around for GraphQL clients but with little success.
+graphql-request seemed like a match, with what looked like a recent release. However, on closer inspection it&amp;rsquo;s pretty clear that it&amp;rsquo;s abandoned, hence not a proper foundation to build a new product upon.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -6,10 +6,20 @@
     <description>Recent content in Blogs on Adriaan Knapen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Thu, 28 May 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 30 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://aknapen.nl/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Server Sided GraphQL with Apollo Client</title>
+      <link>https://aknapen.nl/blog/server-sided-graphql-with-apollo-client/</link>
+      <pubDate>Tue, 30 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/blog/server-sided-graphql-with-apollo-client/</guid>
+      <description>Server Sided GraphQL with Apollo Client During development of the ClaimR Dashboard I found myself in the position where I wanted to query a GraphQL endpoint from my backend. It&amp;rsquo;s a NextJS powered project, hence the server sided logic is written in Node. So I started looking around for GraphQL clients but with little success.
+graphql-request seemed like a match, with what looked like a recent release. However, on closer inspection it&amp;rsquo;s pretty clear that it&amp;rsquo;s abandoned, hence not a proper foundation to build a new product upon.</description>
+    </item>
     
     <item>
       <title>Prod&#43;&#43;[2]: Managing Kubernetes Context Files</title>
