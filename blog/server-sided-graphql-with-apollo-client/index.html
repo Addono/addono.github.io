@@ -88,49 +88,27 @@
           <div class="panel-body">
             <div class="blogpost">
               <h1 id="server-sided-graphql-with-apollo-client">Server Sided GraphQL with Apollo Client</h1>
-<p>During development of the <a href="https://dashboard.claimr.tools">ClaimR Dashboard</a> I found myself in the position where I wanted to query a GraphQL endpoint from my backend. It&rsquo;s a NextJS powered project, hence the server sided logic is written in Node. So I started looking around for GraphQL clients but with little success.</p>
-<p><a href="https://github.com/prisma-labs/graphql-request">graphql-request</a> seemed like a match, with what looked like a recent release. However, on closer inspection it&rsquo;s pretty clear that it&rsquo;s abandoned, hence not a proper foundation to build a new product upon. I came close to resort to making plain HTTP requests myself, until I stumbled upon Apollo Client feature to make queries yourself.</p>
-<p>Apollo Client advocates in their documentation that it&rsquo;s mainly for React, strongly pushing everyone to use their hook based architecture. I have used it a lot and it has recently become my default choice when doing client side GraphQL consumption. However, the server I was building is a GraphQL endpoint itself, hence it involves no React at all.</p>
-<p>Behold we can actually use the Apollo Client on server side. I couldn&rsquo;t find a single mention of it in the documentation, and the client is actually branded as &ldquo;Client (React)&rdquo;. However, on the <a href="https://www.apollographql.com/docs/react/get-started/">Getting Started</a> page of the documentation they start with using <code>client.query(...)</code> before they introduce hook and component based requests.</p>
-<p>The options from <code>client.query(...)</code> and <code>client.mutate(...)</code> are very similar to the <code>useQuery</code> and <code>useMutation</code> we know from React. Both return a promise, which include the response, error and the like. Here&rsquo;s a little example to show how this approximately looks like.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ApolloClient</span>, <span style="color:#a6e22e">HttpLink</span>, <span style="color:#a6e22e">InMemoryCache</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@apollo/client&#39;</span>
+<p>During development of the <a href="https://dashboard.claimr.tools/">dashboard</a> I’m making for <a href="https://claimr.tools/">ClaimR</a> I found myself in the position where I wanted to query a GraphQL endpoint from my backend. (It’s a <a href="https://nextjs.org/">NextJS</a> powered project, hence the server sided logic is written in Node.) So, I started looking for GraphQL clients but with little success.</p>
+<p><img src="/img/blog/server-sided-graphql-with-apollo-client_header.png" alt="img"></p>
+<p><a href="https://github.com/prisma-labs/graphql-request">graphql-request</a> seemed like a match, with what looked like a recent release earlier this year. However, on closer inspection it’s pretty clear that it has been abandoned. In other words, not a proper foundation to build my new product upon. I came close to resorting to making plain HTTP requests myself, until I stumbled upon Apollo Client’s feature allowing you to make queries yourself!</p>
+<p><a href="https://www.apollographql.com/docs/react/">Apollo Client</a> advocates in their documentation that it’s primarily for React, thus strongly pushing everyone to use their hook based architecture. Recently I have been using Apollo Client frequently for consuming GraphQL in frontend projects. However, this new project required consuming GraphQL on the server, therefore the React use-case didn’t apply.</p>
+<p><strong>Behold</strong>, we can actually use the Apollo Client on server side. The documentation doesn’t mention this anywhere, and the client is actually branded as “Client (React)”. However, on the <a href="https://www.apollographql.com/docs/react/get-started/">Getting Started</a> page of the documentation, they start by using <code>client.query(...)</code> before they introduce hook and component based requests.</p>
+<p>The options from <code>client.query(...)</code> and <code>client.mutate(...)</code> are very similar to the <code>useQuery</code> and <code>useMutation</code> we know from React. Both return a promise, which include the response, error and the like. Here&rsquo;s a little example to show roughly what it looks like:
+<script type="application/javascript" src="https://gist.github.com/Addono/eec0aacb75630faf021bdc70af73ca89.js"></script>
 
-<span style="color:#75715e">// Create GraphQL Client for FaunaDB
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">client</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ApolloClient</span>({
-  <span style="color:#a6e22e">cache</span>: <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">InMemoryCache</span>(),
-  <span style="color:#a6e22e">link</span>: <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">HttpLink</span>({
-    <span style="color:#a6e22e">uri</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;https://graphql.fauna.com/graphql&#39;</span>,
-    <span style="color:#a6e22e">headers</span><span style="color:#f92672">:</span> {
-      <span style="color:#e6db74">&#34;Authorization&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`Bearer </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">FAUNADB_SECRET</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>,
-    },
-  }),
-  <span style="color:#a6e22e">defaultOptions</span><span style="color:#f92672">:</span> {
-    <span style="color:#a6e22e">query</span><span style="color:#f92672">:</span> {
-      <span style="color:#a6e22e">fetchPolicy</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;no-cache&#39;</span>,
-    },
-  }
-})
-
-<span style="color:#75715e">// ...
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">// Use the client to query our GraphQL endpoint
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">data</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">query</span>({
-  <span style="color:#a6e22e">query</span>: <span style="color:#66d9ef">gql</span><span style="color:#e6db74">`
-</span><span style="color:#e6db74">    query GET_USERS {
-</span><span style="color:#e6db74">      users {
-</span><span style="color:#e6db74">        email
-</span><span style="color:#e6db74">        name
-</span><span style="color:#e6db74">      }
-</span><span style="color:#e6db74">    }
-</span><span style="color:#e6db74">	`</span>,
-})
-</code></pre></div><p>Note that in the snippet the <code>defaultOptions</code> of the client is configured to disable the cache. This is completely optional, however the default caching policy is reasonable for usage on the frontend. It results in multiple issues:</p>
-<p>Having your backend cache everything by default will cause <strong>stale data to be returned</strong>. Here and there I overwrite the <code>fetchPolicy</code> for some queries to include caching if I am certain that the response won&rsquo;t change. However, when in doubt don&rsquo;t. Instead, try to go for client-side caching wherever possible.</p>
-<p>I burned my fingers by having (unintentionally) client side and server side caching - both were using Apollo Client. Figuring out where the stale data originated from was tedious, as you need to manually inspect the query responses. Also, it&rsquo;s very easy for another developer to not be aware of this server side caching behavior, which will surely drive them mad when they are debugging.</p>
-<p>Another issue which emerged is data <strong>inconsistency</strong>, as I deployed my backend as a serverless function. Each instance deployed by my serverless provider had its own cache, hence different instances would cache different data for the same query. To the user this caused the data to flicker, as requests were routed to an instance at random, causing responses from different instances to contain different results.</p>
-<p>Also expect <strong>increased memory usage</strong>, as all responses are stored in the cache by default. This could quickly become an issue if you deploy your backend onto many small instances, as this cache will start to take up quite a bit of memory fast.</p>
-<p>Lastly, it should be noted that this form of local caching will see <strong>degraded effectiveness</strong> when a lot of instances are used or instances are purged often - as would be the case in serverless environments. More instances mean having more individual caches, hence the chance of having a cache miss increases with more instances. In the end, the same data needs to be cached multiple times in order to implement effective caching.</p>
-<p>To conclude, be mindful about caching. It can help a bit, but the default Apollo Client caching implementation is in memory and hence not as effective as it is on the client side. Maybe in the future we will see a Redis client, as <a href="https://www.npmjs.com/package/apollo-server-cache-redis">exists</a> for Apollo Server, but until then we will need to make due with what we have.</p>
+Note that in the snippet the <code>defaultOptions</code> of the client is configured to disable the cache. This is completely optional, however the default caching policy is reasonable for usage on the frontend. However, this default caching policy in the backend results in multiple issues in the backend.</p>
+<p>For starters, your backend will start working with stale data. So in all likeliness, it will also start <strong>returning stale data</strong>. To make matters worse, during development hot-reloading will purge the cache every time you make a change to your backend or deploy a new version. Thus, at first glance it could all look fine, only to become an issue when you start working on something else.</p>
+<p>I burned my fingers by having (unintentionally) client side and server side caching enabled — both are using Apollo Client. Figuring out where the stale data originated from was tedious, as you need to manually inspect the query responses. In addition, it’s very easy for another developer to not be aware of this server-side caching behavior, which will surely drive them mad when debugging.</p>
+<p>Here and there I overwrote the <code>fetchPolicy</code> for individual queries to use caching, if I was certain that the response wouldn’t change. For example, there’s one query on one write-only field which can safely be cached. I’m still not too thrilled about it, but works for now and improves both performance and resource efficiency. However, violation of the implicit assumption about the query results being write only will cause incorrect behavior.</p>
+<p>So the rule of thumb on enabling caching is simple, when in doubt, don&rsquo;t. Instead, focus on client-side caching wherever possible.</p>
+<blockquote>
+<p>Enable caching? When in doubt, don’t.</p>
+</blockquote>
+<p>Another issue that emerged as I deployed my backend as a serverless function, was data <strong>inconsistency</strong>. Each instance deployed by my serverless provider had its own cache, hence different instances would cache different data for the same query. To the user, this caused the data to flicker, as requests were routed to an instance at random, causing responses from different instances to contain different results.</p>
+<p>Also, expect <strong>increased memory usage</strong>, as all responses are stored in the cache by default. This could quickly become an issue if you deploy your backend onto many small instances, as this cache will start to take up quite a bit of memory fast.</p>
+<p>Lastly, this form of local caching will see <strong>degraded effectiveness</strong> when a lot of instances are used or instances are purged often — as would be the case in serverless environments. More instances mean having more individual caches, thus the chance of having a cache miss increases with more instances. In the end, the same data needs to be cached multiple times in order to get many cache hits.</p>
+<p>To conclude, be mindful about caching. It can help a bit, but the default Apollo Client caching implementation is in memory and consequentially not as effective as it is on the client side. Maybe in the future we will see a Redis client, as <a href="https://www.npmjs.com/package/apollo-server-cache-redis">exists</a> for Apollo Server, but until then, we will have to make due with what we have.</p>
+<p><em>Thank you</em> <a href="https://ksoutar.com/"><em>Keira Nicole Soutar</em></a> <em>for taking the time to review this post.</em></p>
 
               <hr>
               <div class="related-posts">
