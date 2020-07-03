@@ -109,6 +109,7 @@ Note that in the snippet the <code>defaultOptions</code> of the client is config
 <p>Lastly, this form of local caching will see <strong>degraded effectiveness</strong> when a lot of instances are used or instances are purged often — as would be the case in serverless environments. More instances mean having more individual caches, thus the chance of having a cache miss increases with more instances. In the end, the same data needs to be cached multiple times in order to get many cache hits.</p>
 <p>To conclude, be mindful about caching. It can help a bit, but the default Apollo Client caching implementation is in memory and consequentially not as effective as it is on the client side. Maybe in the future we will see a Redis client, as <a href="https://www.npmjs.com/package/apollo-server-cache-redis">exists</a> for Apollo Server, but until then, we will have to make due with what we have.</p>
 <p><em>Thank you</em> <a href="https://ksoutar.com/"><em>Keira Nicole Soutar</em></a> <em>for taking the time to review this post.</em></p>
+<p>This post is now also <a href="https://medium.com/swlh/server-sided-graphql-with-apollo-client-cf072a27145f">published</a> by &ldquo;The Startup&rdquo; on Medium!</p>
 
               <hr>
               <div class="related-posts">
