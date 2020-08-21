@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Seach on Adriaan Knapen</title>
+    <link>https://aknapen.nl/tags/seach/</link>
+    <description>Recent content in Seach on Adriaan Knapen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Fri, 21 Aug 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://aknapen.nl/tags/seach/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Prod&#43;&#43;[3]: Leaner Search Using DuckDuckGo !Bangs</title>
+      <link>https://aknapen.nl/blog/prod-plus-plus-3-duckduckgo-bashes/</link>
+      <pubDate>Fri, 21 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/blog/prod-plus-plus-3-duckduckgo-bashes/</guid>
+      <description>In this mini-series I will walk you through some habits I replaced in recent times, which have shown to pay off and make me a more productive programmer/power-user of my computer. All these changes should be easy to gradually adopt, so I would highly recommend checking them out. If you’ve any suggestions ☝️ or improvements ✍️, then email me at hi@aknapen.nl or reach out using any of the social media listed here.</description>
+    </item>
+    
+  </channel>
+</rss>

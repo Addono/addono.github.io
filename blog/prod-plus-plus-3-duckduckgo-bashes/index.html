@@ -7,7 +7,7 @@
     <meta name="author" content="Adriaan Knapen" />
     <meta name="description" content="The personal website of Adriaan Knapen">
     <link rel="shortcut icon" href="https://aknapen.nl/img/logo.png">
-    <title>Prod&#43;&#43;[2]: Managing Kubernetes Context Files</title>
+    <title>Prod&#43;&#43;[3]: Leaner Search Using DuckDuckGo !Bangs</title>
     <meta name="generator" content="Hugo 0.74.3" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://aknapen.nl/css/main.css" />
@@ -54,36 +54,20 @@
       <div class="container">
         <div class="blog-post">
           <h3>
-            <strong><a href="https://aknapen.nl/blog/prod-plus-plus-2-shell-improvement-managing-kubernetes-context-files/">Prod&#43;&#43;[2]: Managing Kubernetes Context Files</a></strong>
+            <strong><a href="https://aknapen.nl/blog/prod-plus-plus-3-duckduckgo-bashes/">Prod&#43;&#43;[3]: Leaner Search Using DuckDuckGo !Bangs</a></strong>
           </h3>
         </div>
         <div class="blog-title">
           <h4>
-          May 28, 2020
+          August 21, 2020
             &nbsp;&nbsp;
             
             <a href="https://aknapen.nl/tags/productivity">
               <span class="label label-success">Productivity</span>
             </a>
             
-            <a href="https://aknapen.nl/tags/kubernetes">
-              <span class="label label-success">Kubernetes</span>
-            </a>
-            
-            <a href="https://aknapen.nl/tags/shell">
-              <span class="label label-success">Shell</span>
-            </a>
-            
-            <a href="https://aknapen.nl/tags/bash">
-              <span class="label label-success">Bash</span>
-            </a>
-            
-            <a href="https://aknapen.nl/tags/linux">
-              <span class="label label-success">Linux</span>
-            </a>
-            
-            <a href="https://aknapen.nl/tags/macos">
-              <span class="label label-success">MacOS</span>
+            <a href="https://aknapen.nl/tags/seach">
+              <span class="label label-success">Seach</span>
             </a>
             
           </h4>
@@ -93,18 +77,31 @@
             <div class="blogpost">
               <p>In this mini-series I will walk you through some habits I replaced in recent times, which have shown to pay off and make me a more productive programmer/power-user of my computer. All these changes should be easy to gradually adopt, so I would highly recommend checking them out. If you’ve any suggestions ☝️ or improvements ✍️, then email me at <a href="mailto:hi@aknapen.nl">hi@aknapen.nl</a> or reach out using any of the social media listed <a href="https://aknapen.nl">here</a>.</p>
 <hr>
-<h1 id="prod2-managing-kubernetes-context-files">Prod++[2]: Managing Kubernetes Context Files</h1>
-<p>For anyone who ever worked a bit with Kubernetes, <code>kubectx</code> is probably quite familiar. Nothing painful there when you’re just running a local <a href="https://minikube.sigs.k8s.io/">Minikube</a> cluster, which auto-magically seems to add and update its configuration. In practice it’s updating the <code>~/.kube/config</code> file every time you create or remove a cluster.</p>
-<p>This kind of magic is all fine when you’re getting started, but soon enough you will find that Minikube is merely one of the sources of Kubernetes contexts. You might also be running <a href="https://kind.sigs.k8s.io/">kind</a>, spin up some clusters in the cloud, or have your colleague share some with you. Soon the amount of different context credentials starts ramping up. <code>kubectl</code> doesn’t come with an elegant solution out of the box.</p>
-<p>You might end up trying <a href="https://stackoverflow.com/a/46184649/7500339">this</a> config flattening solution suggested at StackOverflow. Great, now whenever you want to remove a context from your configuration you have to manually sift through this configuration file and delete all references — spoiler alert: this requires editing the space in two or more places. Also, assuming you were successful and didn’t overwrite the previous config, you now duplicated your configuration file.</p>
-<p>So what are you going to do with this old configuration file? If you let it hang around, then you will slowly start collecting all these files, soon enough you will lose track which files are already merged and which are not. A mess is imminent if you do not delete them, but the flip side is that removing these files could be irrecoverable.</p>
-<h3 id="the-official-way">The Official Way</h3>
-<p>Luckily the official documentation has a <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/#set-the-kubeconfig-environment-variable">suggestion</a> on how to solve this issue: Append the new configuration file to the list of configuration files stored in the <code>KUBECONFIG</code>environment variable. Manually adding and removing paths to this environment variable remembered me of all the fun times with managing the <code>PATH</code> in Windows, which would never get even close to fit on my screen, let alone the small text field they reserved for it.</p>
-<p>Don’t despair, here’s the real solution. Add it to your <code>~/.bashrc</code> or <code>~/.zshrc</code> and no need to ever touch <code>KUBECONFIG</code> manually again:</p>
-<pre><code># Set the location of the Kubernetes configs
-export KUBECONFIG=$(find ~/.kube/config ~/.kube/configs -type f 2&gt;/dev/null | paste -s -d : -)
-</code></pre><p>Now, every time you start your shell it will join all paths to <code>~/.kube/config</code> or <code>~/.kube/configs</code> and set them as your <code>KUBECONFIG</code>. Both can be either files or directories. I kept <code>config</code> as the default file, which Minikube and kind can use for their auto-magic. <code>configs</code> is a directory which contains all the context files. Now, adding or removing a file is as easy as respectively copying and deleting a file in <code>~/.kube/configs</code> - don’t forget to restart the shell to take effect - which made managing all my configs so much easier.</p>
-<p>To briefly touch upon how this piece of Bash works, <code>find</code> is used to list all file paths. Then <code>paste</code> merely joins all these file paths with a colon and violà, we got our <code>KUBECONFIG</code>.</p>
+<h1 id="prod3-leaner-search-using-duckduckgo-bangs">Prod++[3]: Leaner Search Using DuckDuckGo !Bangs</h1>
+<p><a href="https://start.duckduckgo.com">DuckDuckGo</a> is often advocated as the privacy perserving alternative for Google. Besides protecting your privacy it also has a really cool feature called Bangs, which acts as a shortcut to query some commonly used websites.</p>
+<p>Bangs work by prefixing your search query with a <code>!</code> followed by a short code to identify which website you would like to query. To give some examples:</p>
+<ul>
+<li>
+<p><code>!w turing</code> opens the <a href="https://en.wikipedia.org/wiki/Alan_Turing">Wikipedia page of Alan Turing</a>.</p>
+</li>
+<li>
+<p><code>!wa derivative of x^3</code> query <a href="https://www.wolframalpha.com/input/?i=derivative+of+x%5E3">Wolfram Alpha for the derivative of x cubed</a>.</p>
+</li>
+<li>
+<p><code>!enes time</code> translates <a href="https://translate.google.com/#en/es/time">&ldquo;time&rdquo; from English to Spanish using Google Translate</a>.</p>
+</li>
+<li>
+<p><code>!so python try-catch</code> searches <a href="https://stackoverflow.com/search?q=python%20try%2Dcatch">StackOverflow for &ldquo;python try-catch&rdquo;</a>.</p>
+</li>
+<li>
+<p><code>!g meaning of life</code> query <a href="https://www.google.com/search?hl=en&amp;q=meaning%20of%20life">Google search for the meaning of life</a></p>
+</li>
+<li>
+<p><code>!i flower</code> get <a href="https://duckduckgo.com/?q=flower&amp;ia=images&amp;iax=images">images of flowers</a>.</p>
+</li>
+</ul>
+<p>I hope these examples give you a feel on how you can simplify querying specific services to find what you need faster.</p>
+<p>You can find more about Bangs - including a list of all available Bangs - on <a href="https://duckduckgo.com/bang">DuckDuckGo&rsquo;s website</a>.</p>
 
               <hr>
               <div class="related-posts">
@@ -113,12 +110,12 @@ export KUBECONFIG=$(find ~/.kube/config ~/.kube/configs -type f 2&gt;/dev/null |
                   <div class="row">
                     <div class="col-sm-4 col-md-4 col-lg-4">
                       <h6 style="text-align: right">
-                        August 21, 2020
+                        May 28, 2020
                       </h6>
                     </div>
                     <div class="col-sm-8 col-md-8 col-lg-8">
                       <h6 style="text-align: left">
-                        <strong><a href="/blog/prod-plus-plus-3-duckduckgo-bashes/">Prod++[3]: Leaner Search Using DuckDuckGo !Bangs</a></strong>
+                        <strong><a href="/blog/prod-plus-plus-2-shell-improvement-managing-kubernetes-context-files/">Prod++[2]: Managing Kubernetes Context Files</a></strong>
                       </h6>
                     </div>
                   </div>

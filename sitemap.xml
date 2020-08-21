@@ -4,21 +4,51 @@
   
   <url>
     <loc>https://aknapen.nl/</loc>
-    <lastmod>2020-06-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://aknapen.nl/tags/apollo-client/</loc>
-    <lastmod>2020-06-30T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://aknapen.nl/blog/</loc>
-    <lastmod>2020-06-30T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://aknapen.nl/categories/</loc>
+    <lastmod>2020-08-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://aknapen.nl/blog/prod-plus-plus-3-duckduckgo-bashes/</loc>
+    <lastmod>2020-08-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://aknapen.nl/tags/productivity/</loc>
+    <lastmod>2020-08-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://aknapen.nl/categories/productivity/</loc>
+    <lastmod>2020-08-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://aknapen.nl/tags/seach/</loc>
+    <lastmod>2020-08-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://aknapen.nl/tags/</loc>
+    <lastmod>2020-08-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://aknapen.nl/categories/technology/</loc>
+    <lastmod>2020-08-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://aknapen.nl/tags/apollo-client/</loc>
     <lastmod>2020-06-30T00:00:00+00:00</lastmod>
   </url>
   
@@ -53,16 +83,6 @@
   </url>
   
   <url>
-    <loc>https://aknapen.nl/tags/</loc>
-    <lastmod>2020-06-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://aknapen.nl/categories/technology/</loc>
-    <lastmod>2020-06-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://aknapen.nl/tags/bash/</loc>
     <lastmod>2020-05-28T00:00:00+00:00</lastmod>
   </url>
@@ -89,16 +109,6 @@
   
   <url>
     <loc>https://aknapen.nl/blog/prod-plus-plus-2-shell-improvement-managing-kubernetes-context-files/</loc>
-    <lastmod>2020-05-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://aknapen.nl/tags/productivity/</loc>
-    <lastmod>2020-05-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://aknapen.nl/categories/productivity/</loc>
     <lastmod>2020-05-28T00:00:00+00:00</lastmod>
   </url>
   

@@ -6,10 +6,28 @@
     <description>Recent content in Tags on Adriaan Knapen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Tue, 30 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 21 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://aknapen.nl/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Productivity</title>
+      <link>https://aknapen.nl/tags/productivity/</link>
+      <pubDate>Fri, 21 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/tags/productivity/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Seach</title>
+      <link>https://aknapen.nl/tags/seach/</link>
+      <pubDate>Fri, 21 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/tags/seach/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Apollo Client</title>
@@ -89,15 +107,6 @@
       <pubDate>Thu, 28 May 2020 00:00:00 +0000</pubDate>
       
       <guid>https://aknapen.nl/tags/macos/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Productivity</title>
-      <link>https://aknapen.nl/tags/productivity/</link>
-      <pubDate>Thu, 28 May 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://aknapen.nl/tags/productivity/</guid>
       <description></description>
     </item>
     
