@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Serverless on Adriaan Knapen</title>
-    <link>https://aknapen.nl/tags/serverless/</link>
-    <description>Recent content in Serverless on Adriaan Knapen</description>
+    <title>DBaaS on Adriaan Knapen</title>
+    <link>https://aknapen.nl/tags/dbaas/</link>
+    <description>Recent content in DBaaS on Adriaan Knapen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Tue, 25 Aug 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://aknapen.nl/tags/serverless/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://aknapen.nl/tags/dbaas/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,16 +19,6 @@
       <guid>https://aknapen.nl/blog/always-free-managed-postgresql-databases/</guid>
       <description>Always Free Managed Postgres Databases Reviewed I&amp;rsquo;m a big proponent for serverless, especially for small but long-running projects. Such project needs to be as simple as possible to get started and require no maintenance. Many of the serverless providers offer a generous free-tier, which often suffices until the project gains traction.
 Serverless compute resources are quite easy to come by, for example Vercel, Netlify or AWS Lambda allow for a vast amount of serverless function executions in their free-tier.</description>
-    </item>
-    
-    <item>
-      <title>Server Sided GraphQL with Apollo Client</title>
-      <link>https://aknapen.nl/blog/server-sided-graphql-with-apollo-client/</link>
-      <pubDate>Tue, 30 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://aknapen.nl/blog/server-sided-graphql-with-apollo-client/</guid>
-      <description>Server Sided GraphQL with Apollo Client During development of the dashboard I’m making for ClaimR I found myself in the position where I wanted to query a GraphQL endpoint from my backend. (It’s a NextJS powered project, hence the server sided logic is written in Node.) So, I started looking for GraphQL clients but with little success.
-graphql-request seemed like a match, with what looked like a recent release earlier this year.</description>
     </item>
     
   </channel>

@@ -6,10 +6,73 @@
     <description>Recent content in Tags on Adriaan Knapen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Fri, 21 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 25 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://aknapen.nl/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Cloud</title>
+      <link>https://aknapen.nl/tags/cloud/</link>
+      <pubDate>Tue, 25 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/tags/cloud/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Database</title>
+      <link>https://aknapen.nl/tags/database/</link>
+      <pubDate>Tue, 25 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/tags/database/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DBaaS</title>
+      <link>https://aknapen.nl/tags/dbaas/</link>
+      <pubDate>Tue, 25 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/tags/dbaas/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Development</title>
+      <link>https://aknapen.nl/tags/development/</link>
+      <pubDate>Tue, 25 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/tags/development/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Postgres</title>
+      <link>https://aknapen.nl/tags/postgres/</link>
+      <pubDate>Tue, 25 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/tags/postgres/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PostgreSQL</title>
+      <link>https://aknapen.nl/tags/postgresql/</link>
+      <pubDate>Tue, 25 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/tags/postgresql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Serverless</title>
+      <link>https://aknapen.nl/tags/serverless/</link>
+      <pubDate>Tue, 25 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/tags/serverless/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Productivity</title>
@@ -39,15 +102,6 @@
     </item>
     
     <item>
-      <title>Development</title>
-      <link>https://aknapen.nl/tags/development/</link>
-      <pubDate>Tue, 30 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://aknapen.nl/tags/development/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>GraphQL</title>
       <link>https://aknapen.nl/tags/graphql/</link>
       <pubDate>Tue, 30 Jun 2020 00:00:00 +0000</pubDate>
@@ -62,15 +116,6 @@
       <pubDate>Tue, 30 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>https://aknapen.nl/tags/nodejs/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Serverless</title>
-      <link>https://aknapen.nl/tags/serverless/</link>
-      <pubDate>Tue, 30 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://aknapen.nl/tags/serverless/</guid>
       <description></description>
     </item>
     
