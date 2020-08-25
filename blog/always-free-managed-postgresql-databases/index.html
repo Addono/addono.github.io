@@ -100,7 +100,7 @@
 <p>Serverless compute resources are quite easy to come by, for example <a href="https://vercel.com/">Vercel</a>, <a href="https://www.netlify.com/">Netlify</a> or <a href="https://aws.amazon.com/lambda/">AWS Lambda</a> allow for a vast amount of serverless function executions in their free-tier. If you don&rsquo;t like serverless functions and rather go for containers, then there&rsquo;s <a href="https://heroku.com/">Heroku</a> or <a href="https://fly.io">Fly</a>. Free databases are on the other hand harder to come by and often a lot more constrained in their free tier.</p>
 <p>When building one of my simple and personal projects on top of Postgres I switched a couple of times between several free tiers. As it happens, the performance of these databases vary greatly, which is something they do not advertise on their signup page.</p>
 <p>Next I will cover Heroku Postgres, ElephantSQL and AlwaysData. These services all have an always free tier on their managed Postgres. All major cloud providers also have free tiers or free trial credits for their managed Postgres services, however here they will be omitted as this won&rsquo;t be a solution for a project which you want to keep running for more than a year without pulling out your wallet or migrating the database.</p>
-<p>For each of the database offerings I cover there&rsquo;s also a demo deployment of a simple web-app. Feel free to play around with it and judge the performance of each of the providers by yourself. You can use your browser inspection mode to get better insight in the timing or cause of errors. Note that all deployments might need some warmup time, as resources will get unprovisioned when they are not accessed for a while.</p>
+<p>For each of the database offerings I cover there&rsquo;s also a demo deployment of a simple web-app. Feel free to play around with it and judge the performance of each of the providers by yourself. You can use your browser inspection mode to get better insight in the timing or cause of errors. Note that all deployments might need some warm up time, as resources will get unprovisioned when they are not accessed for a while.</p>
 <h2 id="heroku-postgres">Heroku Postgres</h2>
 <p>If you&rsquo;re able to host your project on Heroku, then I would recommend them wholeheartedly. They have amazing performance, are easy to integrate with into your project and have a pleasant UI.</p>
 <p>✅ Automatically exposes the database connection string as an environment variable to your application</p>
@@ -116,7 +116,7 @@
 <h2 id="elephantsql">ElephantSQL</h2>
 <p>Searching for free a free managed Postgres database probably lets you end up at <a href="https://www.elephantsql.com/">ElephantSQL</a>. Won&rsquo;t recommend them at all, the performance is terrible, they run an outdated version of Postgres and have a very limited free tier.</p>
 <p>✅ Static database connection url allows hosting your application on a different application provider</p>
-<p>✅ Allows you to chose the underlying cloud-provider</p>
+<p>✅ Allows you to choose the underlying cloud-provider</p>
 <p>❌ Simple queries taking 2 seconds is quite common</p>
 <p>❌ Runs an outdated version of Postgres (11.5)</p>
 <p>❌ 5 concurrent connections easily exhausted when old deployments keep connections open (regularly newly deployed serverless functions were unavailable, as older deployments exhausted the connection pool)</p>
@@ -124,8 +124,8 @@
 <p>Demo: <a href="https://elephantsql.vercel.app">https://elephantsql.vercel.app</a></p>
 <p><img src="/img/blog/elephantsql-portal.png" alt="ElephantSQL Database Portal"></p>
 <h2 id="alwaysdata">AlwaysData</h2>
-<p>If Heroku isn&rsquo;t an option and you still want to have slightly better performance than ElephantSQL, then <a href="https://www.alwaysdata.com/">AlwaysData</a> could be an option. Their UI is decent looking and powerfull, however getting simple things done takes some exploring before you get what you were looking for.</p>
-<p>✅ Powerfull role-based access control to limit access rights for each user by database</p>
+<p>If Heroku isn&rsquo;t an option and you still want to have slightly better performance than ElephantSQL, then <a href="https://www.alwaysdata.com/">AlwaysData</a> could be an option. Their UI is decent looking and powerful, however getting simple things done takes some exploring before you get what you were looking for.</p>
+<p>✅ Powerful role-based access control to limit access rights for each user by database</p>
 <p>✅ Insight and possibility to terminate individual connections</p>
 <p>❌ Simple read queries take around 500ms whilst write can go up to 2 seconds</p>
 <p>❌ UI takes some getting used to</p>
@@ -135,7 +135,7 @@
 <p>Demo: <a href="https://alwaysdata.vercel.app">https://alwaysdata.vercel.app</a></p>
 <p><img src="/img/blog/alwaysdata-postgres-active-connections.png" alt="AlwaysData Postgres Active Connections Overview"></p>
 <h2 id="conclusion">Conclusion</h2>
-<p>None of these options are perfect and what you get seems a lot more restrictive and limited compared to serverless compute options. ElephantSQL and AlwaysData seem like relics from the PHP days whose DBaaS service might still be usefull in the cloud era. However, both services seem heavily under provisioned, hence performance wise they seem unsuitable for applications where the user needs to wait for database queries. Heroku on the other hand offers a crisp UI and their deployment models is truly cloud native.</p>
+<p>None of these options are perfect and what you get seems a lot more restrictive and limited compared to serverless compute options. ElephantSQL and AlwaysData seem like relics from the PHP days whose DBaaS service might still be  useful in the cloud era. However, both services seem heavily under provisioned, hence performance wise they seem unsuitable for applications where the user needs to wait for database queries. Heroku on the other hand offers a crisp UI and their deployment models is truly cloud native.</p>
 
               <hr>
               <div class="related-posts">
