@@ -6,11 +6,7 @@
     <description>Recent content in DBaaS on Adriaan Knapen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Tue, 25 Aug 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://aknapen.nl/tags/dbaas/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 25 Aug 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://aknapen.nl/tags/dbaas/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Always-Free Managed PostgreSQL Databases Reviewed</title>
       <link>https://aknapen.nl/blog/always-free-managed-postgresql-databases/</link>

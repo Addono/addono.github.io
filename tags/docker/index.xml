@@ -6,11 +6,7 @@
     <description>Recent content in Docker on Adriaan Knapen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Tue, 28 Apr 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://aknapen.nl/tags/docker/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 28 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://aknapen.nl/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Containerizing Secret Hitler.io</title>
       <link>https://aknapen.nl/blog/containerizing-secret-hitler-io/</link>

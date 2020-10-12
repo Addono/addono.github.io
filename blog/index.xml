@@ -6,10 +6,16 @@
     <description>Recent content in Blogs on Adriaan Knapen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Tue, 25 Aug 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://aknapen.nl/blog/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Sat, 10 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://aknapen.nl/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Build a Plugin for Docusaurus v2</title>
+      <link>https://aknapen.nl/blog/how-to-build-a-plugin-for-docusaurus-v2/</link>
+      <pubDate>Sat, 10 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/blog/how-to-build-a-plugin-for-docusaurus-v2/</guid>
+      <description>How to Build a Plugin for Docusaurus v2 At ClaimR we have been using Docusaurus v2 for our developer and documentation website for a while now. After a couple of months of using it we can confidently say that we’re very happy with our choice.
+Docusaurus comes batteries-included, so you immediately get a lot of value, while it is flexible enough to tailor it to your needs if there’s something you like differently.</description>
+    </item>
     
     <item>
       <title>Always-Free Managed PostgreSQL Databases Reviewed</title>

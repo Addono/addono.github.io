@@ -6,10 +6,42 @@
     <description>Recent content in Tags on Adriaan Knapen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Tue, 25 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 10 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://aknapen.nl/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Development</title>
+      <link>https://aknapen.nl/tags/development/</link>
+      <pubDate>Sat, 10 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/tags/development/</guid>
+      <description></description>
+    </item>
     
-	<atom:link href="https://aknapen.nl/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Docusaurus</title>
+      <link>https://aknapen.nl/tags/docusaurus/</link>
+      <pubDate>Sat, 10 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/tags/docusaurus/</guid>
+      <description></description>
+    </item>
     
+    <item>
+      <title>NodeJS</title>
+      <link>https://aknapen.nl/tags/nodejs/</link>
+      <pubDate>Sat, 10 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/tags/nodejs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Static Website</title>
+      <link>https://aknapen.nl/tags/static-website/</link>
+      <pubDate>Sat, 10 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://aknapen.nl/tags/static-website/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Cloud</title>
@@ -35,15 +67,6 @@
       <pubDate>Tue, 25 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>https://aknapen.nl/tags/dbaas/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Development</title>
-      <link>https://aknapen.nl/tags/development/</link>
-      <pubDate>Tue, 25 Aug 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://aknapen.nl/tags/development/</guid>
       <description></description>
     </item>
     
@@ -107,15 +130,6 @@
       <pubDate>Tue, 30 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>https://aknapen.nl/tags/graphql/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>NodeJS</title>
-      <link>https://aknapen.nl/tags/nodejs/</link>
-      <pubDate>Tue, 30 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://aknapen.nl/tags/nodejs/</guid>
       <description></description>
     </item>
     
