@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Adriaan Knapen" />
+    <meta name="description" content="The personal website of Adriaan Knapen">
+    <link rel="shortcut icon" href="https://aknapen.nl/img/logo.png">
+    <title>Collect Emails from NextJS Form in HubSpot</title>
+    <meta name="generator" content="Hugo 0.83.1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://aknapen.nl/css/main.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,200bold,400old" />
+    
+    <!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+    
+  </head>
+
+  <body>
+    <div id="wrap">
+
+      
+      <nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="https://aknapen.nl/"><i class="fa fa-home"></i></a>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse" id="navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+        <li><a href="/blog/">BLOG</a></li>
+        
+        <li><a href="https://cv.aknapen.nl">RESUME</a></li>
+        
+      
+      </ul>
+    </div>
+  </div>
+</nav>
+
+      
+      <div class="container">
+        <div class="blog-post">
+          <h3>
+            <strong><a href="https://aknapen.nl/blog/collect-emails-from-nextjs-form-in-hubspot/">Collect Emails from NextJS Form in HubSpot</a></strong>
+          </h3>
+        </div>
+        <div class="blog-title">
+          <h4>
+          May 27, 2021
+            &nbsp;&nbsp;
+            
+            <a href="https://aknapen.nl/tags/nextjs">
+              <span class="label label-success">NextJS</span>
+            </a>
+            
+            <a href="https://aknapen.nl/tags/hubspot">
+              <span class="label label-success">HubSpot</span>
+            </a>
+            
+            <a href="https://aknapen.nl/tags/nodejs">
+              <span class="label label-success">NodeJS</span>
+            </a>
+            
+            <a href="https://aknapen.nl/tags/serverless">
+              <span class="label label-success">Serverless</span>
+            </a>
+            
+            <a href="https://aknapen.nl/tags/development">
+              <span class="label label-success">Development</span>
+            </a>
+            
+          </h4>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="blogpost">
+              <h1 id="collect-emails-from-nextjs-form-in-hubspot">Collect Emails from NextJS Form in HubSpot</h1>
+<p>HubSpot is an awesome platform to centrally track all the contacts your company is doing business with.
+At <a href="https://claimr.tools">ClaimR</a> we have been using HubSpot with great success, as it allows all our team members to have a single source of truth.</p>
+<p>During the last few weeks I have been working on our renewed website.
+NextJS is a no-brainer at this point, as it is an amazing framework which spits out static HTML wherever it can - perfect for fast loading landing pages - while also giving you the flexibility to mix in some dynamic content and other server side logic.
+All in one simple framework, pretty neat right?</p>
+<p>For this new website we wanted to have a simple form where our users can leave their email in case they are interested in hearing more of us.
+In this post I will show you how we in the end implemented this form, such that the form submission is directly stored in HubSpot, such that our single-source of truth stays the single source.</p>
+<h2 id="create-the-form">Create the Form</h2>
+<p>First, we create our form component.
+For this, we will be using plain React and the <code>axios-hooks</code> library to send the content of our form with.
+In case you haven&rsquo;t installed it yet, first run:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># For npm</span>
+npm install axios axios-hooks
+
+<span style="color:#75715e"># For Yarn</span>
+yarn add axios axios-hooks
+</code></pre></div><p>Then the component is just a simple form to which we supply a callback to Axios to make the webrequest with the form&rsquo;s data.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">useEffect</span>, <span style="color:#a6e22e">useState</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;react&#34;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">useAxios</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;axios-hooks&#34;</span>
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">EmailSignupForm</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">email</span>, <span style="color:#a6e22e">setEmail</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>(<span style="color:#e6db74">&#34;&#34;</span>)
+  <span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">pageUri</span>, <span style="color:#a6e22e">setPageUri</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>&lt;<span style="color:#f92672">string</span>&gt;()
+
+  <span style="color:#66d9ef">const</span> [{ <span style="color:#a6e22e">data</span>, <span style="color:#a6e22e">loading</span>, <span style="color:#a6e22e">error</span> }, <span style="color:#a6e22e">refetch</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useAxios</span>(
+    {
+      <span style="color:#a6e22e">url</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;/api/emailSignup&#34;</span>,
+      <span style="color:#a6e22e">method</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;POST&#34;</span>,
+      <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">email</span>, <span style="color:#a6e22e">pageUri</span> },
+    },
+    {
+      <span style="color:#a6e22e">manual</span>: <span style="color:#66d9ef">true</span>,
+    }
+  )
+
+  <span style="color:#75715e">// Clear the form on successfull submitting it
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">useEffect</span>(() <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">data</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">success</span> <span style="color:#f92672">===</span> <span style="color:#66d9ef">true</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">loading</span>) {
+      <span style="color:#a6e22e">setEmail</span>(<span style="color:#e6db74">&#34;&#34;</span>)
+    }
+  }, [<span style="color:#a6e22e">data</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">success</span>, <span style="color:#a6e22e">loading</span>])
+
+  <span style="color:#75715e">// Get the url the user is currently visiting.
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// Optional, but enriches the data we have in HubSpot.
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">useEffect</span>(() <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#a6e22e">setPageUri</span>(window.<span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">href</span>)
+  })
+
+  <span style="color:#66d9ef">return</span> (
+    &lt;&gt;
+      &lt;<span style="color:#f92672">input</span>
+        <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;email&#34;</span>}
+        <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;mail@example.com&#34;</span>}
+        <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">email</span>}
+        <span style="color:#a6e22e">onChange</span><span style="color:#f92672">=</span>{(<span style="color:#a6e22e">e</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">setEmail</span>(<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">value</span>)}
+      /&gt;
+      &lt;<span style="color:#f92672">button</span>
+        <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;submit&#34;</span>}
+        <span style="color:#a6e22e">onClick</span><span style="color:#f92672">=</span>{() <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">refetch</span>()}
+        <span style="color:#a6e22e">disabled</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">loading</span>}
+      &gt;
+        <span style="color:#a6e22e">Signup</span>
+      &lt;/<span style="color:#f92672">button</span>&gt;
+    &lt;/&gt;
+  )
+}
+</code></pre></div><h2 id="creating-our-api-endpoint">Creating our API Endpoint</h2>
+<p>You might have noticed by now that our <code>EmailSignupComponent</code> tries to sent the content of the form to the <code>/api/emailSignup</code> endpoint.
+Our next step is to create this endpoint and create a truly functional form.</p>
+<p>First, go to HubSpot and create a new form in the UI with just one field for the email.
+Make sure to remove any Captchas or other required fields, as they will interfere with submitting our form later on.
+In the address bar you can find the portal ID and form GUID, note these down as you will need to add them later.</p>
+<p>We will be using the <a href="https://legacydocs.hubspot.com/docs/methods/forms/submit_form_v3_authentication">HubSpot Form AP</a> to directly submit our form entries to HubSpot.
+Yes, HubSpot advocates for alternative approaches, such as their &ldquo;Non-HubSpot Forms&rdquo;, but in this way we stay in control of the form styling ourselves without needing to add the HubSpot tracking code to our website.</p>
+<p>The following class is the complete serverless function which will forward the data to HubSpot.
+Alternatively, you can also use the unauthenticated API and directly sent the form submittions there, with the downside that the GUID of the form becomes public and you might have to filter out a lot of spam.
+The upside would be that this eliminates the need for you managing any backend logic, allowing your static site to be trully static.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">import</span> <span style="color:#66d9ef">type</span> { <span style="color:#a6e22e">NextApiRequest</span>, <span style="color:#a6e22e">NextApiResponse</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;next&#34;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">axios</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;axios&#34;</span>
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">HUBSPOT_API_KEY</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">HUBSPOT_API_KEY</span>
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">HUBSPOT_PORTAL_ID</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;62515&#34;</span> <span style="color:#75715e">// Replace this
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">HUBSPOT_FORM_GUID</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;fcc69886-915b-4fef-b35f-27850ef461e1&#34;</span> <span style="color:#75715e">// Replace this
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Response</span> <span style="color:#f92672">=</span> {
+  <span style="color:#a6e22e">success</span>: <span style="color:#66d9ef">boolean</span>
+  <span style="color:#a6e22e">email?</span>: <span style="color:#66d9ef">string</span>
+}
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">req</span>: <span style="color:#66d9ef">NextApiRequest</span>, <span style="color:#a6e22e">res</span>: <span style="color:#66d9ef">NextApiResponse</span>&lt;<span style="color:#f92672">Response</span>&gt;) <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">email</span>, <span style="color:#a6e22e">pageUri</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">body</span>
+
+  <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">email</span> <span style="color:#f92672">!==</span> <span style="color:#e6db74">&#34;string&#34;</span>) {
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">status</span>(<span style="color:#ae81ff">400</span>).<span style="color:#a6e22e">json</span>({ <span style="color:#a6e22e">success</span>: <span style="color:#66d9ef">false</span> })
+  }
+
+  <span style="color:#66d9ef">try</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">response</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">axios</span>({
+      <span style="color:#a6e22e">method</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;POST&#34;</span>,
+      <span style="color:#a6e22e">url</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`https://api.hsforms.com/submissions/v3/integration/secure/submit/</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">HUBSPOT_PORTAL_ID</span><span style="color:#e6db74">}</span><span style="color:#e6db74">/</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">HUBSPOT_FORM_GUID</span><span style="color:#e6db74">}</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#e6db74">?hapikey</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#e6db74">=</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">HUBSPOT_API_KEY</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>,
+      <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> {
+        <span style="color:#a6e22e">fields</span><span style="color:#f92672">:</span> [{ <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;email&#34;</span>, <span style="color:#a6e22e">value</span>: <span style="color:#66d9ef">email</span> }],
+        <span style="color:#a6e22e">context</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">pageUri</span> },
+      },
+      <span style="color:#a6e22e">headers</span><span style="color:#f92672">:</span> { <span style="color:#e6db74">&#34;Content-Type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;application/json&#34;</span> },
+    })
+  } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">error</span>) {
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">status</span>(<span style="color:#ae81ff">500</span>).<span style="color:#a6e22e">json</span>({ <span style="color:#a6e22e">success</span>: <span style="color:#66d9ef">false</span> })
+  }
+
+  <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">status</span>(<span style="color:#ae81ff">200</span>).<span style="color:#a6e22e">json</span>({ <span style="color:#a6e22e">success</span>: <span style="color:#66d9ef">true</span>, <span style="color:#a6e22e">email</span> })
+}
+</code></pre></div><p><em>Note that the HubSpot API key is set as an environment variable <code>HUBSPOT_API_KEY</code>. So make sure that that is available in the environment running this function.</em></p>
+<p>This is pretty much all there&rsquo;s to it.
+In the end, we have a quite simple solution which still allows us to style the form however we want.
+I left my specific styling out, but when the new website is live I will add link to show off the purty end-result.</p>
+
+              <hr>
+              <div class="related-posts">
+                <h5>Related Posts</h5>
+                
+                  <div class="row">
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                      <h6 style="text-align: right">
+                        October 10, 2020
+                      </h6>
+                    </div>
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+                      <h6 style="text-align: left">
+                        <strong><a href="/blog/how-to-build-a-plugin-for-docusaurus-v2/">How to Build a Plugin for Docusaurus v2</a></strong>
+                      </h6>
+                    </div>
+                  </div>
+                
+                  <div class="row">
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                      <h6 style="text-align: right">
+                        August 25, 2020
+                      </h6>
+                    </div>
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+                      <h6 style="text-align: left">
+                        <strong><a href="/blog/always-free-managed-postgresql-databases/">Always-Free Managed PostgreSQL Databases Reviewed</a></strong>
+                      </h6>
+                    </div>
+                  </div>
+                
+                  <div class="row">
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                      <h6 style="text-align: right">
+                        June 30, 2020
+                      </h6>
+                    </div>
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+                      <h6 style="text-align: left">
+                        <strong><a href="/blog/server-sided-graphql-with-apollo-client/">Server Sided GraphQL with Apollo Client</a></strong>
+                      </h6>
+                    </div>
+                  </div>
+                
+              </div>
+            </div>
+          </div>
+          <hr>
+        </div>
+      </div>
+      
+    </div>
+
+    
+    <footer>
+  <div id="footer">
+    <div class="container">
+      <p class="text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io/">Hugo</a> and
+      <a href="http://www.github.com/nurlansu/hugo-sustain/">sustain</a> with ♥</p>
+    </div>
+  </div>
+</footer>
+<div class="footer"></div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://aknapen.nl/js/docs.min.js"></script>
+<script src="https://aknapen.nl/js/main.js"></script>
+
+<script src="https://aknapen.nl/js/ie10-viewport-bug-workaround.js"></script>
+
+
+  <script data-goatcounter="https://addono.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+
+
+    
+  </body>
+</html>
