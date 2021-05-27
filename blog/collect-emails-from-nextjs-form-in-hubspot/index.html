@@ -155,7 +155,7 @@ yarn add axios axios-hooks
   )
 }
 </code></pre></div><h2 id="creating-our-api-endpoint">Creating our API Endpoint</h2>
-<p>You might have noticed by now that our <code>EmailSignupComponent</code> tries to sent the content of the form to the <code>/api/emailSignup</code> endpoint.
+<p>You might have noticed by now that our <code>EmailSignupComponent</code> tries to send the content of the form to the <code>/api/emailSignup</code> endpoint.
 Our next step is to create this endpoint and create a truly functional form.</p>
 <p>First, go to HubSpot and create a new form in the UI with just one field for the email.
 Make sure to remove any Captchas or other required fields, as they will interfere with submitting our form later on.
@@ -163,7 +163,7 @@ In the address bar you can find the portal ID and form GUID, note these down as 
 <p>We will be using the <a href="https://legacydocs.hubspot.com/docs/methods/forms/submit_form_v3_authentication">HubSpot Form AP</a> to directly submit our form entries to HubSpot.
 Yes, HubSpot advocates for alternative approaches, such as their &ldquo;Non-HubSpot Forms&rdquo;, but in this way we stay in control of the form styling ourselves without needing to add the HubSpot tracking code to our website.</p>
 <p>The following class is the complete serverless function which will forward the data to HubSpot.
-Alternatively, you can also use the unauthenticated API and directly sent the form submittions there, with the downside that the GUID of the form becomes public and you might have to filter out a lot of spam.
+Alternatively, you can also use the unauthenticated API and directly sent the form submissions there, with the downside that the GUID of the form becomes public and you might have to filter out a lot of spam.
 The upside would be that this eliminates the need for you managing any backend logic, allowing your static site to be trully static.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">import</span> <span style="color:#66d9ef">type</span> { <span style="color:#a6e22e">NextApiRequest</span>, <span style="color:#a6e22e">NextApiResponse</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;next&#34;</span>
 <span style="color:#66d9ef">import</span> <span style="color:#a6e22e">axios</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;axios&#34;</span>
